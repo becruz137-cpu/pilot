@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MARS IT School | PILOT Course Roadmap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          #F4F7FB;
+      --surface:     #FFFFFF;
+      --surface-2:   #F0F4FF;
+      --border:      rgba(0,0,0,0.07);
+      --border-hi:   rgba(0,0,0,0.13);
+      --text:        #1a1a2e;
+      --text-muted:  #64748B;
+      --text-dim:    #94A3B8;
+      --accent:      #FF4B2B;
+      --accent-soft: rgba(255,75,43,0.10);
+      --accent-glow: rgba(255,75,43,0.22);
+      --blue:        #2563EB;
+      --blue-soft:   rgba(37,99,235,0.09);
+      --indigo:      #6366F1;
+      --indigo-soft: rgba(99,102,241,0.09);
+      --teal:        #06B6D4;
+      --line-mod1:   #2563EB;
+      --line-mid:    #FF4B2B;
+      --line-mod2:   #6366F1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: var(--bg);
+      background-image: radial-gradient(#CBD5E1 1px, transparent 1px);
+      background-size: 26px 26px;
+      color: var(--text);
+      padding: 48px 20px 100px;
+      min-height: 100vh;
+    }
+
+    /* ── LANG SWITCHER (top-left, fixed) ─────────────────────── */
+    .lang-widget {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      gap: 2px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ── CONTAINER ────────────────────────────────────────────── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ───────────────────────────────────────────────── */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 52px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -1.5px;
+    }
+    .logo .dot { color: var(--accent); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      border: 1px solid var(--border);
+    }
+    .badge-orange {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(200,103,63,0.3);
+    }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── TIMELINE ─────────────────────────────────────────────── */
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: linear-gradient(180deg,
+        var(--line-mod1) 0%,
+        var(--teal) 42%,
+        var(--line-mid) 50%,
+        var(--line-mod2) 100%
+      );
+      opacity: 0.5;
+      border-radius: 2px;
+    }
+
+    /* ── MODULE BANNER ────────────────────────────────────────── */
+    .module-banner {
+      text-align: center;
+      position: relative;
+      z-index: 5;
+      margin: 44px 0;
+    }
+
+    .module-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .module-label.mod1 {
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid rgba(79,142,247,0.2);
+    }
+    .module-label.mod2 {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(200,103,63,0.25);
+    }
+
+    .mod-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .mod1 .mod-num { background: var(--blue); color: #fff; }
+    .mod2 .mod-num { background: var(--accent); color: #fff; }
+
+    /* ── TIMELINE ITEMS ───────────────────────────────────────── */
+    .timeline-item {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: calc(50% + 24px);
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .timeline-item:nth-child(even) {
+      justify-content: flex-start;
+      padding-right: 0;
+      padding-left: calc(50% + 24px);
+    }
+
+    /* Node on the line */
+    .node {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--border-hi);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text-muted);
+      z-index: 3;
+      transition: all 0.2s ease;
+    }
+
+    .mod1-item .node { border-color: rgba(79,142,247,0.4); color: var(--blue); }
+    .mod2-item .node { border-color: rgba(124,124,248,0.4); color: var(--indigo); }
+
+    .timeline-item:hover .node {
+      transform: translate(-50%, -50%) scale(1.12);
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      width: calc(100% - 20px);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      border-color: var(--border-hi);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(37,99,235,0.12);
+    }
+
+    /* Highlighted (key milestone) */
+    .timeline-item.key .node {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      box-shadow: 0 0 0 6px var(--accent-glow);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .timeline-item.key .card {
+      border-color: rgba(200,103,63,0.3);
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(200,103,63,0.06) 100%);
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+      50%       { box-shadow: 0 0 0 8px rgba(200,103,63,0); }
+    }
+
+    /* Step label */
+    .step-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 10px;
+      border-radius: 5px;
+      margin-bottom: 8px;
+    }
+    .mod1-item .step-label {
+      background: var(--blue-soft);
+      color: var(--blue);
+    }
+    .mod2-item .step-label {
+      background: var(--indigo-soft);
+      color: var(--indigo);
+    }
+    .key .step-label {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .card-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 5px;
+      background: var(--surface-2);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+
+    /* ── FOOTER CLOUD ─────────────────────────────────────────── */
+    .coming-soon {
+      text-align: center;
+      margin-top: 52px;
+    }
+
+    .cs-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: transparent;
+      border: 1px dashed var(--border-hi);
+      color: var(--text-dim);
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .cs-btn:hover {
+      border-color: var(--indigo);
+      color: var(--indigo);
+      background: var(--indigo-soft);
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .timeline::before { left: 20px; }
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        justify-content: flex-start;
+        padding-left: 56px;
+        padding-right: 0;
+      }
+      .node { left: 20px; width: 34px; height: 34px; font-size: 11px; }
+      .card { width: 100%; }
+      .hero h1 { font-size: 26px; }
+      header { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language Switcher: fixed top-left -->
+<div class="lang-widget">
+  <button class="lang-btn" onclick="setLang('ru')" id="btn-ru">RU</button>
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+  <button class="lang-btn" onclick="setLang('uz')" id="btn-uz">UZ</button>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">mars<span class="dot">°</span></div>
+    <div class="header-right">
+      <span class="badge badge-orange" data-i18n="badge_pilot">PILOT COURSE ROADMAP</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1 data-i18n="hero_h1">Course Roadmap</h1>
+    <p data-i18n="hero_p">Two months. Two modules. Two real-world skills. Master digital tools and AI creativity first, then build and ship a real website using professional development tools.</p>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+
+    <!-- MODULE 1 BANNER -->
+    <div class="module-banner">
+      <div class="module-label mod1">
+        <span class="mod-num">1</span>
+        <span data-i18n="mod1_title">MODULE 1: Digital Literacy, Hardware &amp; AI Creativity</span>
+      </div>
+    </div>
+
+    <!-- L1 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">1</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l1_step">Module 1 · Lesson 1</span>
+        <h3 class="card-title" data-i18n="m1l1_title">Welcome to MARS IT School</h3>
+        <p class="card-sub" data-i18n="m1l1_sub">Onboarding to the MARS Space platform, earning coins, and setting learning goals for the course.</p>
+        <div class="tags">
+          <span class="tag">MARS Space</span>
+          <span class="tag">Onboarding</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L2 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">2</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l2_step">Module 1 · Lesson 2</span>
+        <h3 class="card-title" data-i18n="m1l2_title">Computer Literacy &amp; Hotkeys</h3>
+        <p class="card-sub" data-i18n="m1l2_sub">Mastering file management, folder structures, keyboard shortcuts, and efficient workflow habits.</p>
+        <div class="tags">
+          <span class="tag">File System</span>
+          <span class="tag">Hotkeys</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L3 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">3</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l3_step">Module 1 · Lesson 3</span>
+        <h3 class="card-title" data-i18n="m1l3_title">Internet Search &amp; ChatGPT Basics</h3>
+        <p class="card-sub" data-i18n="m1l3_sub">Smart information search, fact-checking, and writing clear, effective prompts for AI assistants.</p>
+        <div class="tags">
+          <span class="tag">Chrome</span>
+          <span class="tag">ChatGPT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L4 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">4</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l4_step">Module 1 · Lesson 4</span>
+        <h3 class="card-title" data-i18n="m1l4_title">Image Generation with AI</h3>
+        <p class="card-sub" data-i18n="m1l4_sub">Creating visual concepts, characters, and illustrations through text-based AI prompts.</p>
+        <div class="tags">
+          <span class="tag">AI Art</span>
+          <span class="tag">Visual Prompts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L5 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">5</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l5_step">Module 1 · Lesson 5</span>
+        <h3 class="card-title" data-i18n="m1l5_title">Song &amp; Music Creation with AI</h3>
+        <p class="card-sub" data-i18n="m1l5_sub">Writing lyrics and generating original music tracks and sound effects using artificial intelligence.</p>
+        <div class="tags">
+          <span class="tag">AI Audio</span>
+          <span class="tag">Music Gen</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L6 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">6</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l6_step">Module 1 · Lesson 6</span>
+        <h3 class="card-title" data-i18n="m1l6_title">Video Clip: Bring the Hero to Life</h3>
+        <p class="card-sub" data-i18n="m1l6_sub">Animating static characters, adding voice and music, and editing a short video clip with AI tools.</p>
+        <div class="tags">
+          <span class="tag">AI Video</span>
+          <span class="tag">CapCut</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L7 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">7</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l7_step">Module 1 · Lesson 7</span>
+        <h3 class="card-title" data-i18n="m1l7_title">Google Sheets: Planning &amp; Data</h3>
+        <p class="card-sub" data-i18n="m1l7_sub">Organizing data, working with cells, writing basic formulas, and structured project planning.</p>
+        <div class="tags">
+          <span class="tag">Google Sheets</span>
+          <span class="tag">Data</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L8 (KEY) -->
+    <div class="timeline-item mod1-item key">
+      <div class="node">8</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l8_step">Module 1 · Lesson 8 · Key Milestone</span>
+        <h3 class="card-title" data-i18n="m1l8_title">Laptop Components &amp; OS Differences</h3>
+        <p class="card-sub" data-i18n="m1l8_sub">Inside the machine: CPU, RAM, SSD, GPU — how they work and why they matter. Comparing Windows, macOS, and Linux.</p>
+        <div class="tags">
+          <span class="tag">Hardware Architecture</span>
+          <span class="tag">Windows / macOS / Linux</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L9 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">9</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l9_step">Module 1 · Lesson 9</span>
+        <h3 class="card-title" data-i18n="m1l9_title">Canva: From Data to Poster</h3>
+        <p class="card-sub" data-i18n="m1l9_sub">Designing clean infographics, posters, and visual presentations that communicate data clearly.</p>
+        <div class="tags">
+          <span class="tag">Canva</span>
+          <span class="tag">Visual Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L10 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">10</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l10_step">Module 1 · Lesson 10</span>
+        <h3 class="card-title" data-i18n="m1l10_title">Figma: Your App Screen</h3>
+        <p class="card-sub" data-i18n="m1l10_sub">UI/UX fundamentals, frames, typography, and designing a complete app interface from scratch.</p>
+        <div class="tags">
+          <span class="tag">Figma</span>
+          <span class="tag">UI/UX</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L11 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">11</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l11_step">Module 1 · Lesson 11</span>
+        <h3 class="card-title" data-i18n="m1l11_title">Stitch: AI Draws, We Refine</h3>
+        <p class="card-sub" data-i18n="m1l11_sub">Combining AI-generated UI layouts with manual design adjustments to produce polished interfaces.</p>
+        <div class="tags">
+          <span class="tag">AI + UI</span>
+          <span class="tag">Co-Creation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- L12 -->
+    <div class="timeline-item mod1-item">
+      <div class="node">12</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m1l12_step">Module 1 · Lesson 12</span>
+        <h3 class="card-title" data-i18n="m1l12_title">Mini-Project &amp; Module Review</h3>
+        <p class="card-sub" data-i18n="m1l12_sub">Presenting your creative AI and design portfolio project to the group. Review, feedback, and celebration.</p>
+        <div class="tags">
+          <span class="tag">Presentation</span>
+          <span class="tag">Mini-Project</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2 BANNER -->
+    <div class="module-banner">
+      <div class="module-label mod2">
+        <span class="mod-num">2</span>
+        <span data-i18n="mod2_title">MODULE 2: Web Development, AI Coding &amp; Deployment</span>
+      </div>
+    </div>
+
+    <!-- M2 L1 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">13</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l1_step">Module 2 · Lesson 1</span>
+        <h3 class="card-title" data-i18n="m2l1_title">How Websites Work: HTML, CSS &amp; Structure</h3>
+        <p class="card-sub" data-i18n="m2l1_sub">Understanding web page building blocks — tags, selectors, styling rules, and document layout structure.</p>
+        <div class="tags">
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L2 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">14</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l2_step">Module 2 · Lesson 2</span>
+        <h3 class="card-title" data-i18n="m2l2_title">Writing Good Prompts for Code</h3>
+        <p class="card-sub" data-i18n="m2l2_sub">Formulating precise technical instructions so AI generates clean, accurate, and maintainable code.</p>
+        <div class="tags">
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">AI Code</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L3 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">15</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l3_step">Module 2 · Lesson 3</span>
+        <h3 class="card-title" data-i18n="m2l3_title">Your First Landing Page with AI</h3>
+        <p class="card-sub" data-i18n="m2l3_sub">Building a complete single-page website from scratch — hero banner, feature cards, and footer.</p>
+        <div class="tags">
+          <span class="tag">Landing Page</span>
+          <span class="tag">Web Layout</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L4 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">16</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l4_step">Module 2 · Lesson 4</span>
+        <h3 class="card-title" data-i18n="m2l4_title">Editing: Making Precise Requests to AI</h3>
+        <p class="card-sub" data-i18n="m2l4_sub">Iterating on colors, fonts, and page sections step by step without breaking working code.</p>
+        <div class="tags">
+          <span class="tag">Code Iteration</span>
+          <span class="tag">Styling</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L5 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">17</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l5_step">Module 2 · Lesson 5</span>
+        <h3 class="card-title" data-i18n="m2l5_title">Cursor: Landing Page on Your Computer</h3>
+        <p class="card-sub" data-i18n="m2l5_sub">Working inside a professional AI-powered code editor and managing local project files like a real developer.</p>
+        <div class="tags">
+          <span class="tag">Cursor IDE</span>
+          <span class="tag">Local Dev</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L6 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">18</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l6_step">Module 2 · Lesson 6</span>
+        <h3 class="card-title" data-i18n="m2l6_title">Git &amp; GitHub: Saving Your Project</h3>
+        <p class="card-sub" data-i18n="m2l6_sub">Version control fundamentals — commits, branches, and backing up your code to GitHub repositories.</p>
+        <div class="tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Source Control</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L7 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">19</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l7_step">Module 2 · Lesson 7</span>
+        <h3 class="card-title" data-i18n="m2l7_title">Your Website on a Phone: Responsive Design</h3>
+        <p class="card-sub" data-i18n="m2l7_sub">Adapting layouts so your pages look sharp and usable on both desktop monitors and mobile screens.</p>
+        <div class="tags">
+          <span class="tag">Responsive Design</span>
+          <span class="tag">Mobile-First</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L8 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">20</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l8_step">Module 2 · Lesson 8</span>
+        <h3 class="card-title" data-i18n="m2l8_title">Deploy: Your Website Gets a Live Link</h3>
+        <p class="card-sub" data-i18n="m2l8_sub">Hosting your project on the internet — publishing to a real server and sharing a public URL with anyone.</p>
+        <div class="tags">
+          <span class="tag">Deployment</span>
+          <span class="tag">Cloud Hosting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L9 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">21</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l9_step">Module 2 · Lesson 9</span>
+        <h3 class="card-title" data-i18n="m2l9_title">Bug Hunting: Reading &amp; Fixing Errors</h3>
+        <p class="card-sub" data-i18n="m2l9_sub">Using browser DevTools to inspect elements, read console errors, and systematically fix broken code.</p>
+        <div class="tags">
+          <span class="tag">Debugging</span>
+          <span class="tag">DevTools</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L10 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">22</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l10_step">Module 2 · Lesson 10</span>
+        <h3 class="card-title" data-i18n="m2l10_title">Landing Page for a Client: Brief &amp; Tasks</h3>
+        <p class="card-sub" data-i18n="m2l10_sub">Working from a realistic technical specification to plan and build a custom website for a simulated client project.</p>
+        <div class="tags">
+          <span class="tag">Client Brief</span>
+          <span class="tag">Tech Brief</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L11 -->
+    <div class="timeline-item mod2-item">
+      <div class="node">23</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l11_step">Module 2 · Lesson 11</span>
+        <h3 class="card-title" data-i18n="m2l11_title">Animations, Lead Forms &amp; Final Polish</h3>
+        <p class="card-sub" data-i18n="m2l11_sub">Adding hover effects, smooth CSS transitions, contact forms, and finishing touches to make the site shine.</p>
+        <div class="tags">
+          <span class="tag">CSS Animations</span>
+          <span class="tag">Forms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- M2 L12 FINAL EXAM -->
+    <div class="timeline-item mod2-item key">
+      <div class="node">24</div>
+      <div class="card">
+        <span class="step-label" data-i18n="m2l12_step">Module 2 · Lesson 12 · Final Exam</span>
+        <h3 class="card-title" data-i18n="m2l12_title">Exam: Landing Page by Technical Brief</h3>
+        <p class="card-sub" data-i18n="m2l12_sub">Presenting and defending your live, deployed website in front of the class. You built something real.</p>
+        <div class="tags">
+          <span class="tag">Final Exam</span>
+          <span class="tag">Live Demo</span>
+          <span class="tag">Graduation</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /timeline -->
+
+  <!-- COMING SOON -->
+  <div class="coming-soon">
+    <button class="cs-btn" onclick="alert(t('mod3_alert'))">
+      <span>+ + +</span>
+      <span data-i18n="mod3_label">MODULE 3: Coming Soon</span>
+    </button>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+  const langs = {
+    en: {
+      badge_pilot:  'PILOT COURSE ROADMAP',
+      hero_h1:      'Course Roadmap',
+      hero_p:       'Two months. Two modules. Two real-world skills. Master digital tools and AI creativity first, then build and ship a real website using professional development tools.',
+      mod1_title:   'MODULE 1: Digital Literacy, Hardware & AI Creativity',
+      mod2_title:   'MODULE 2: Web Development, AI Coding & Deployment',
+      mod3_label:   'MODULE 3: Coming Soon',
+      mod3_alert:   'Module 3 is currently in development. Stay tuned!',
+
+      m1l1_step:  'Module 1 · Lesson 1',
+      m1l1_title: 'Welcome to MARS IT School',
+      m1l1_sub:   'Onboarding to the MARS Space platform, earning coins, and setting learning goals for the course.',
+      m1l2_step:  'Module 1 · Lesson 2',
+      m1l2_title: 'Computer Literacy & Hotkeys',
+      m1l2_sub:   'Mastering file management, folder structures, keyboard shortcuts, and efficient workflow habits.',
+      m1l3_step:  'Module 1 · Lesson 3',
+      m1l3_title: 'Internet Search & ChatGPT Basics',
+      m1l3_sub:   'Smart information search, fact-checking, and writing clear, effective prompts for AI assistants.',
+      m1l4_step:  'Module 1 · Lesson 4',
+      m1l4_title: 'Image Generation with AI',
+      m1l4_sub:   'Creating visual concepts, characters, and illustrations through text-based AI prompts.',
+      m1l5_step:  'Module 1 · Lesson 5',
+      m1l5_title: 'Song & Music Creation with AI',
+      m1l5_sub:   'Writing lyrics and generating original music tracks and sound effects using artificial intelligence.',
+      m1l6_step:  'Module 1 · Lesson 6',
+      m1l6_title: 'Video Clip: Bring the Hero to Life',
+      m1l6_sub:   'Animating static characters, adding voice and music, and editing a short video clip with AI tools.',
+      m1l7_step:  'Module 1 · Lesson 7',
+      m1l7_title: 'Google Sheets: Planning & Data',
+      m1l7_sub:   'Organizing data, working with cells, writing basic formulas, and structured project planning.',
+      m1l8_step:  'Module 1 · Lesson 8 · Key Milestone',
+      m1l8_title: 'Laptop Components & OS Differences',
+      m1l8_sub:   'Inside the machine: CPU, RAM, SSD, GPU — how they work and why they matter. Comparing Windows, macOS, and Linux.',
+      m1l9_step:  'Module 1 · Lesson 9',
+      m1l9_title: 'Canva: From Data to Poster',
+      m1l9_sub:   'Designing clean infographics, posters, and visual presentations that communicate data clearly.',
+      m1l10_step:  'Module 1 · Lesson 10',
+      m1l10_title: 'Figma: Your App Screen',
+      m1l10_sub:   'UI/UX fundamentals, frames, typography, and designing a complete app interface from scratch.',
+      m1l11_step:  'Module 1 · Lesson 11',
+      m1l11_title: 'Stitch: AI Draws, We Refine',
+      m1l11_sub:   'Combining AI-generated UI layouts with manual design adjustments to produce polished interfaces.',
+      m1l12_step:  'Module 1 · Lesson 12',
+      m1l12_title: 'Mini-Project & Module Review',
+      m1l12_sub:   'Presenting your creative AI and design portfolio project to the group. Review, feedback, and celebration.',
+
+      m2l1_step:  'Module 2 · Lesson 1',
+      m2l1_title: 'How Websites Work: HTML, CSS & Structure',
+      m2l1_sub:   'Understanding web page building blocks — tags, selectors, styling rules, and document layout structure.',
+      m2l2_step:  'Module 2 · Lesson 2',
+      m2l2_title: 'Writing Good Prompts for Code',
+      m2l2_sub:   'Formulating precise technical instructions so AI generates clean, accurate, and maintainable code.',
+      m2l3_step:  'Module 2 · Lesson 3',
+      m2l3_title: 'Your First Landing Page with AI',
+      m2l3_sub:   'Building a complete single-page website from scratch — hero banner, feature cards, and footer.',
+      m2l4_step:  'Module 2 · Lesson 4',
+      m2l4_title: 'Editing: Making Precise Requests to AI',
+      m2l4_sub:   'Iterating on colors, fonts, and page sections step by step without breaking working code.',
+      m2l5_step:  'Module 2 · Lesson 5',
+      m2l5_title: 'Cursor: Landing Page on Your Computer',
+      m2l5_sub:   'Working inside a professional AI-powered code editor and managing local project files like a real developer.',
+      m2l6_step:  'Module 2 · Lesson 6',
+      m2l6_title: 'Git & GitHub: Saving Your Project',
+      m2l6_sub:   'Version control fundamentals — commits, branches, and backing up your code to GitHub repositories.',
+      m2l7_step:  'Module 2 · Lesson 7',
+      m2l7_title: 'Your Website on a Phone: Responsive Design',
+      m2l7_sub:   'Adapting layouts so your pages look sharp and usable on both desktop monitors and mobile screens.',
+      m2l8_step:  'Module 2 · Lesson 8',
+      m2l8_title: 'Deploy: Your Website Gets a Live Link',
+      m2l8_sub:   'Hosting your project on the internet — publishing to a real server and sharing a public URL with anyone.',
+      m2l9_step:  'Module 2 · Lesson 9',
+      m2l9_title: 'Bug Hunting: Reading & Fixing Errors',
+      m2l9_sub:   'Using browser DevTools to inspect elements, read console errors, and systematically fix broken code.',
+      m2l10_step:  'Module 2 · Lesson 10',
+      m2l10_title: 'Landing Page for a Client: Brief & Tasks',
+      m2l10_sub:   'Working from a realistic technical specification to plan and build a custom website for a simulated client project.',
+      m2l11_step:  'Module 2 · Lesson 11',
+      m2l11_title: 'Animations, Lead Forms & Final Polish',
+      m2l11_sub:   'Adding hover effects, smooth CSS transitions, contact forms, and finishing touches to make the site shine.',
+      m2l12_step:  'Module 2 · Lesson 12 · Final Exam',
+      m2l12_title: 'Exam: Landing Page by Technical Brief',
+      m2l12_sub:   'Presenting and defending your live, deployed website in front of the class. You built something real.',
+    },
+
+    ru: {
+      badge_pilot:  'ДОРОЖНАЯ КАРТА КУРСА PILOT',
+      hero_h1:      'Дорожная карта обучения',
+      hero_p:       'Два месяца. Два модуля. Два реальных навыка. Сначала освоите цифровые инструменты и ИИ-творчество, затем создадите и запустите настоящий сайт с помощью профессиональных инструментов.',
+      mod1_title:   'МОДУЛЬ 1: Цифровая грамотность, железо и ИИ-творчество',
+      mod2_title:   'МОДУЛЬ 2: Веб-разработка, ИИ-кодинг и деплой',
+      mod3_label:   'МОДУЛЬ 3: Скоро...',
+      mod3_alert:   'Модуль 3 находится в разработке. Скоро будет доступен!',
+
+      m1l1_step:  'Модуль 1 · Урок 1',
+      m1l1_title: 'Добро пожаловать в MARS IT School',
+      m1l1_sub:   'Знакомство с платформой MARS Space, заработок коинов и постановка учебных целей.',
+      m1l2_step:  'Модуль 1 · Урок 2',
+      m1l2_title: 'Компьютерная грамотность и горячие клавиши',
+      m1l2_sub:   'Управление файлами, структура папок, горячие клавиши и эффективные рабочие привычки.',
+      m1l3_step:  'Модуль 1 · Урок 3',
+      m1l3_title: 'Поиск в интернете и основы ChatGPT',
+      m1l3_sub:   'Умный поиск информации, проверка фактов и написание чётких, эффективных промптов для ИИ.',
+      m1l4_step:  'Модуль 1 · Урок 4',
+      m1l4_title: 'Генерация изображений с ИИ',
+      m1l4_sub:   'Создание визуальных концептов, персонажей и иллюстраций через текстовые промпты.',
+      m1l5_step:  'Модуль 1 · Урок 5',
+      m1l5_title: 'Создание песен и музыки с ИИ',
+      m1l5_sub:   'Написание текстов и создание оригинальных музыкальных треков и звуковых эффектов с помощью ИИ.',
+      m1l6_step:  'Модуль 1 · Урок 6',
+      m1l6_title: 'Клип: оживляем героя',
+      m1l6_sub:   'Анимация статичных персонажей, добавление голоса и музыки, монтаж короткого видеоклипа.',
+      m1l7_step:  'Модуль 1 · Урок 7',
+      m1l7_title: 'Google Таблицы: план и данные',
+      m1l7_sub:   'Организация данных, работа с ячейками, базовые формулы и структурированное планирование проекта.',
+      m1l8_step:  'Модуль 1 · Урок 8 · Ключевая веха',
+      m1l8_title: 'Компоненты ноутбука и различия ОС',
+      m1l8_sub:   'Внутри машины: процессор, RAM, SSD, видеокарта — как это работает и почему важно. Сравнение Windows, macOS и Linux.',
+      m1l9_step:  'Модуль 1 · Урок 9',
+      m1l9_title: 'Canva: из данных — плакат',
+      m1l9_sub:   'Создание аккуратных инфографик, плакатов и визуальных презентаций, которые доносят информацию.',
+      m1l10_step:  'Модуль 1 · Урок 10',
+      m1l10_title: 'Figma: экран твоего приложения',
+      m1l10_sub:   'Основы UI/UX, фреймы, типографика и проектирование полноценного интерфейса приложения с нуля.',
+      m1l11_step:  'Модуль 1 · Урок 11',
+      m1l11_title: 'Stitch: ИИ рисует, мы дорабатываем',
+      m1l11_sub:   'Совмещение макетов, созданных нейросетью, с ручными правками дизайна для получения результата.',
+      m1l12_step:  'Модуль 1 · Урок 12',
+      m1l12_title: 'Мини-проект и итоги модуля',
+      m1l12_sub:   'Презентация вашего проекта по ИИ и дизайну перед группой. Разбор работ, обратная связь и праздничное завершение модуля.',
+
+      m2l1_step:  'Модуль 2 · Урок 1',
+      m2l1_title: 'Как устроен сайт: HTML, CSS и структура',
+      m2l1_sub:   'Строительные блоки веб-страниц — теги, селекторы, стили и структура макета.',
+      m2l2_step:  'Модуль 2 · Урок 2',
+      m2l2_title: 'Хороший промпт для кода',
+      m2l2_sub:   'Формулирование точных технических инструкций, чтобы ИИ генерировал чистый и рабочий код.',
+      m2l3_step:  'Модуль 2 · Урок 3',
+      m2l3_title: 'Первый лендинг с ИИ',
+      m2l3_sub:   'Создание полноценного одностраничного сайта с нуля — шапка, карточки и футер.',
+      m2l4_step:  'Модуль 2 · Урок 4',
+      m2l4_title: 'Правки: точные просьбы к ИИ',
+      m2l4_sub:   'Пошаговое обновление цветов, шрифтов и секций без нарушения рабочего кода.',
+      m2l5_step:  'Модуль 2 · Урок 5',
+      m2l5_title: 'Cursor: лендинг на твоём компьютере',
+      m2l5_sub:   'Работа в профессиональном ИИ-редакторе кода и управление локальными файлами проекта.',
+      m2l6_step:  'Модуль 2 · Урок 6',
+      m2l6_title: 'Git и GitHub: сохранение проекта',
+      m2l6_sub:   'Основы контроля версий — коммиты, ветки и сохранение кода в репозиториях GitHub.',
+      m2l7_step:  'Модуль 2 · Урок 7',
+      m2l7_title: 'Сайт на телефоне: адаптивность',
+      m2l7_sub:   'Адаптация макетов так, чтобы страницы отлично выглядели и на мониторе, и на смартфоне.',
+      m2l8_step:  'Модуль 2 · Урок 8',
+      m2l8_title: 'Deploy: сайт получает ссылку',
+      m2l8_sub:   'Публикация проекта в интернете — деплой на реальный сервер и получение публичной ссылки.',
+      m2l9_step:  'Модуль 2 · Урок 9',
+      m2l9_title: 'Охота на баги: чтение и исправление ошибок',
+      m2l9_sub:   'Инспектирование элементов в DevTools, чтение ошибок консоли и системное исправление кода.',
+      m2l10_step:  'Модуль 2 · Урок 10',
+      m2l10_title: 'Лендинг для клиента: ТЗ и задачи',
+      m2l10_sub:   'Работа по реальному техническому заданию — планирование и создание кастомного сайта.',
+      m2l11_step:  'Модуль 2 · Урок 11',
+      m2l11_title: 'Анимации, формы заявки и финальная доработка',
+      m2l11_sub:   'Добавление hover-эффектов, плавных переходов, форм обратной связи и финальных штрихов.',
+      m2l12_step:  'Модуль 2 · Урок 12 · Экзамен',
+      m2l12_title: 'Экзамен: лендинг по ТЗ',
+      m2l12_sub:   'Презентация и защита живого, задеплоенного веб-проекта перед классом. Вы создали что-то настоящее.',
+    },
+
+    uz: {
+      badge_pilot:  'PILOT KURSINING YO\'L XARITASI',
+      hero_h1:      'Kurs Yo\'l Xaritasi',
+      hero_p:       'Ikki oy. Ikki modul. Ikki haqiqiy ko\'nikma. Avval raqamli vositalar va AI ijodkorligini o\'zlashtirasiz, so\'ng professional dasturlash vositalari yordamida haqiqiy veb-sayt yaratasiz va uni internetga chiqarasiz.',
+      mod1_title:   '1-MODUL: Raqamli savodxonlik, qurilma va AI ijodkorligi',
+      mod2_title:   '2-MODUL: Veb-dasturlash, AI kodlash va joylashtirish',
+      mod3_label:   '3-MODUL: Tez kunda...',
+      mod3_alert:   '3-modul hozirda ishlab chiqilmoqda. Tez kunda taqdim etiladi!',
+
+      m1l1_step:  '1-modul · 1-dars',
+      m1l1_title: 'MARS IT School\'ga xush kelibsiz',
+      m1l1_sub:   'MARS Space platformasi bilan tanishish, coinlar ishlash va kurs uchun o\'quv maqsadlarini belgilash.',
+      m1l2_step:  '1-modul · 2-dars',
+      m1l2_title: 'Kompyuter savodxonligi va tezkor tugmalar',
+      m1l2_sub:   'Fayllarni boshqarish, papka tuzilmasi, klaviatura yorliqlari va samarali ish odatlarini egallash.',
+      m1l3_step:  '1-modul · 3-dars',
+      m1l3_title: 'Internetda qidiruv va ChatGPT asoslari',
+      m1l3_sub:   'Aqlli ma\'lumot qidirish, faktlarni tekshirish va AI yordamchilari uchun aniq, samarali promptlar yozish.',
+      m1l4_step:  '1-modul · 4-dars',
+      m1l4_title: 'AI yordamida rasm yaratish',
+      m1l4_sub:   'Matnli AI promptlar orqali vizual konsepsiyalar, qahramonlar va illyustratsiyalar yaratish.',
+      m1l5_step:  '1-modul · 5-dars',
+      m1l5_title: 'AI bilan qo\'shiq va musiqa yaratish',
+      m1l5_sub:   'Matn yozish va sun\'iy intellekt yordamida original musiqa treklari va ovoz effektlari yaratish.',
+      m1l6_step:  '1-modul · 6-dars',
+      m1l6_title: 'Video klip: qahramonni jonlantiramiz',
+      m1l6_sub:   'Statik qahramonlarni jonlantirish, ovoz va musiqa qo\'shish, AI vositalari bilan qisqa klip montaji.',
+      m1l7_step:  '1-modul · 7-dars',
+      m1l7_title: 'Google Jadvallar: reja va ma\'lumotlar',
+      m1l7_sub:   'Ma\'lumotlarni tartibga solish, kataklar bilan ishlash, asosiy formulalar va loyihani rejalashtirish.',
+      m1l8_step:  '1-modul · 8-dars · Asosiy bosqich',
+      m1l8_title: 'Noutbuk qismlari va OS farqlari',
+      m1l8_sub:   'Qurilma ichida: protsessor, RAM, SSD, videokarta — qanday ishlaydi va nima uchun muhim. Windows, macOS va Linux taqqoslanadi.',
+      m1l9_step:  '1-modul · 9-dars',
+      m1l9_title: 'Canva: ma\'lumotlardan — plakatgacha',
+      m1l9_sub:   'Ma\'lumotlarni aniq yetkazadigan toza infografikalar, plakatlar va vizual taqdimotlar yaratish.',
+      m1l10_step:  '1-modul · 10-dars',
+      m1l10_title: 'Figma: ilovangiz ekrani',
+      m1l10_sub:   'UI/UX asoslari, freymlar, tipografiya va noldan to\'liq ilova interfeysini loyihalash.',
+      m1l11_step:  '1-modul · 11-dars',
+      m1l11_title: 'Stitch: AI chizadi, biz sayqallaymiz',
+      m1l11_sub:   'Neyrotarmoq yaratgan UI maketlarini qo\'lda dizayn tuzatishlari bilan birlashtirish.',
+      m1l12_step:  '1-modul · 12-dars',
+      m1l12_title: 'Mini-loyiha va modul yakuni',
+      m1l12_sub:   'O\'z ijodiy AI va dizayn loyihangizni guruh oldida taqdim etish. Ko\'rib chiqish, fikr-mulohaza va nishonlash.',
+
+      m2l1_step:  '2-modul · 1-dars',
+      m2l1_title: 'Sayt qanday ishlaydi: HTML, CSS va tuzilma',
+      m2l1_sub:   'Veb-sahifa qurilish bloklari — teglar, selektorlar, stil qoidalari va hujjat tartibini tushunish.',
+      m2l2_step:  '2-modul · 2-dars',
+      m2l2_title: 'Kod uchun to\'g\'ri prompt yozish',
+      m2l2_sub:   'AI toza, aniq va qo\'llab-quvvatlanadigan kod generatsiya qilishi uchun aniq texnik ko\'rsatmalar shakllantirish.',
+      m2l3_step:  '2-modul · 3-dars',
+      m2l3_title: 'AI bilan birinchi landing sahifa',
+      m2l3_sub:   'Noldan to\'liq bir sahifali veb-sayt qurish — hero banner, xususiyat kartalari va footer.',
+      m2l4_step:  '2-modul · 4-dars',
+      m2l4_title: 'Tuzatishlar: AI\'dan aniq yordam so\'rash',
+      m2l4_sub:   'Mavjud ishlaydigan kodni buzmagan holda ranglar, shriftlar va bo\'limlarga qadam-baqadam o\'zgartirish.',
+      m2l5_step:  '2-modul · 5-dars',
+      m2l5_title: 'Cursor: kompyuteringizdagi landing sahifa',
+      m2l5_sub:   'Professional AI-dasturlash muharririda ishlash va lokal loyiha fayllarini haqiqiy ishlab chiquvchi kabi boshqarish.',
+      m2l6_step:  '2-modul · 6-dars',
+      m2l6_title: 'Git va GitHub: loyihangizni saqlash',
+      m2l6_sub:   'Versiyalarni boshqarish asoslari — commitlar, branchlar va kodni GitHub omborlarida zaxiralash.',
+      m2l7_step:  '2-modul · 7-dars',
+      m2l7_title: 'Telefonda veb-sayt: moslashuvchanlik',
+      m2l7_sub:   'Sahifalar ham ish stoli monitorlarida, ham mobil ekranlarda aniq va qulay ko\'rinishi uchun maketlarni moslashtirish.',
+      m2l8_step:  '2-modul · 8-dars',
+      m2l8_title: 'Deploy: sayt jonli havola oladi',
+      m2l8_sub:   'Loyihangizni internetga joylashtirish — real serverga nashr etish va hamma bilan ommaviy URL ulashish.',
+      m2l9_step:  '2-modul · 9-dars',
+      m2l9_title: 'Bug ovlash: xatolarni o\'qish va tuzatish',
+      m2l9_sub:   'Elementlarni tekshirish uchun brauzer DevTools, konsol xatolarini o\'qish va kodni tizimli tuzatish.',
+      m2l10_step:  '2-modul · 10-dars',
+      m2l10_title: 'Mijoz uchun landing: texnik topshiriq va vazifalar',
+      m2l10_sub:   'Simulyatsiya qilingan mijoz loyihasi uchun maxsus veb-sayt rejalashtirish va qurish uchun real texnik topshiriq bo\'yicha ishlash.',
+      m2l11_step:  '2-modul · 11-dars',
+      m2l11_title: 'Animatsiyalar, ariza formalari va yakuniy sayqallash',
+      m2l11_sub:   'Hover effektlari, silliq CSS o\'tishlari, bog\'lanish formalari va saytni porlashi uchun yakuniy teginishlar qo\'shish.',
+      m2l12_step:  '2-modul · 12-dars · Yakuniy imtihon',
+      m2l12_title: 'Imtihon: texnik topshiriq bo\'yicha landing sahifa',
+      m2l12_sub:   'Sinf oldida jonli, joylashtirilgan veb-saytni taqdim etish va himoya qilish. Siz haqiqiy narsa yaratdingiz.',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function t(key) {
+    return langs[currentLang][key] || langs['en'][key] || key;
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+
+    // Update button states
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('btn-' + lang).classList.add('active');
+
+    // Apply translations
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = t(key);
+      if (val) el.textContent = val;
+    });
+  }
+
+  // Init on load with EN
+  setLang('en');
+</script>
+
+</body>
+</html>
